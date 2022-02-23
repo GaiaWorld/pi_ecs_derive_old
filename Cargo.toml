@@ -1,0 +1,16 @@
+[package]
+name = "pi_ecs_derive_old"
+version = "0.4.0"
+authors = ["suncy <suncy@gmail.com>"]
+edition = "2018"
+
+[lib]
+proc-macro = true
+
+[dependencies]
+proc-macro2 = "1.0"
+syn = "1.0"
+quote = "1.0"
+pi_ecs_old = {path="../pi_ecs_old"}
+pi_map = {path="../pi_map"}
+pi_hashmap = {path="../pi_hashmap"}
