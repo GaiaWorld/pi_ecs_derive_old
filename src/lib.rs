@@ -39,7 +39,7 @@ pub fn write_derive(input: TokenStream) -> TokenStream {
 }
 
 #[proc_macro]
-pub fn write(input: TokenStream) -> TokenStream {
+pub fn write_trait(input: TokenStream) -> TokenStream {
     let ast = syn::parse(input).unwrap();
     let gen = impl_component(&ast, false);
     gen.into()
@@ -106,16 +106,15 @@ fn impl_write(ast: &DeriveInput, generics: &syn::Generics, is_deref: bool) -> pr
     let (impl_generics, _, _) = generics1.split_for_impl();
 
     quote! {
-        pub trait #write_trait_name#trait_generics #where_clause {
+        pub trait #write_trait_name #trait_generics #where_clause {
             #trait_def
         }
 
-        impl#impl_generics #write_trait_name#ty_generics for ecs::monitor::Write<'a, #name #ty_generics> #where_clause {
+        impl #impl_generics #write_trait_name #ty_generics for pi_ecs_old::monitor::Write<'a, #name #ty_generics> #where_clause {
             #trait_impl
         }
     }
 }
-
 
 fn ident(sym: &str) -> syn::Ident {
     syn::Ident::new(sym, proc_macro2::Span::call_site())
@@ -237,7 +236,7 @@ impl<'a> ToTokens for SetGetFuncsImpl<'a> {
         };
         // modify
         tokens.extend(quote! {
-            fn modify<F: FnOnce(&mut #name#ty_generics) -> bool>(&mut self, callback: F) {
+            fn modify<F: FnOnce(&mut #name #ty_generics) -> bool>(&mut self, callback: F) {
                 if callback(self.value) {
                     self.notify.modify_event(self.id, "", 0);
                 }
@@ -286,7 +285,7 @@ impl<'a> ToTokens for SetGetFuncs<'a> {
         };
         // modify def
         tokens.extend(quote! {
-            fn modify<F: FnOnce(&mut #name#ty_generics) -> bool>(&mut self, callback: F); 
+            fn modify<F: FnOnce(&mut #name #ty_generics) -> bool>(&mut self, callback: F); 
         });
     }
 }

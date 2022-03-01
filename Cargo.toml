@@ -1,8 +1,12 @@
 [package]
 name = "pi_ecs_derive_old"
-version = "0.4.0"
-authors = ["suncy <suncy@gmail.com>"]
-edition = "2018"
+version = "0.1.0"
+authors = ["suncy <530739162@qq.com>"]
+edition = "2021"
+description = "ecs_derive"
+repository = "https://github.com/GaiaWorld/pi_ecs_derive_old.git"
+license = "MIT OR Apache-2.0"
+keywords = ["pi", "ecs_derive"]
 
 [lib]
 proc-macro = true
@@ -11,6 +15,5 @@ proc-macro = true
 proc-macro2 = "1.0"
 syn = "1.0"
 quote = "1.0"
-pi_ecs_old = {path="../pi_ecs_old"}
-pi_map = {path="../pi_map"}
-pi_hashmap = {path="../pi_hashmap"}
+pi_map = "0.1"
+pi_ecs_old = "0.1"

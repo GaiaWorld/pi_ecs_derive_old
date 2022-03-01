@@ -1,11 +1,10 @@
-extern crate ecs;
-extern crate map;
-extern crate hashmap;
+extern crate pi_ecs_old;
+extern crate pi_map;
 #[macro_use]
-extern crate ecs_derive;
+extern crate pi_ecs_derive_old;
 
-use ecs::component::{ Component};
-use map::vecmap::VecMap;
+use pi_ecs_old::component::Component;
+use pi_map::vecmap::VecMap;
 // use hashmap::HashMap;
 
 #[derive(Component)]
@@ -47,7 +46,7 @@ pub struct Single2{
     y: usize,
 }
 
-write!{
+write_trait!{
     pub struct Single2{
         x: usize,
         y: usize,
@@ -56,7 +55,7 @@ write!{
 
 pub struct Single3(String, f32);
 
-write!{
+write_trait!{
     pub struct Single3(String, f32);
 }
 
